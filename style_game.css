@@ -1,0 +1,78 @@
+
+body {
+    margin: 0;
+	font-family: "Trebuchet MS";
+    padding-top: 48px;
+}
+
+.map{
+    max-width: 100%;
+    position: absolute;
+    top: 40px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 1;
+}
+
+.menu {
+    position: absolute;
+    text-align: center;
+    width: 250px;
+    top: 150px;
+    left: 20px;
+    height: 300px;
+    background: #b3c9f4;
+    z-index: 2;
+}
+
+.legend{
+    color: #000;
+    margin-top: 20px;
+    font-size: 26px;
+    margin-bottom: 40px;
+}
+.container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header {
+    background: #b3c9f4;
+    padding-top: 10px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    padding-bottom: 10px;
+}
+
+.logo {
+    color: #000;
+    font-weight: 600;
+    font-size: 24px;
+    text-align: left;
+    margin-right: 20px;
+}
+
+.points{
+  color: aliceblue;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.sum{
+  color: aliceblue;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.photo img {
+    max-width: 100%;
+    height: auto;
+    max-height: 30px; 
+}

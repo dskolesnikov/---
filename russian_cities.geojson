@@ -1,0 +1,22 @@
+var point = {
+"type": "FeatureCollection",
+"name": "cities",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "id": 1, "population": "12 655 050", "gorod": "Москва", "oblast": "Москва" }, "geometry": { "type": "Point", "coordinates": [ 37.6233, 55.7525] } },
+{ "type": "Feature", "properties": { "id": 2, "population": "5 384 342","gorod": "Санкт-Петербург", "oblast": "Ленинградская область" }, "geometry": { "type": "Point", "coordinates": [ 30.3221, 59.9325] } },
+{ "type": "Feature", "properties": { "id": 3, "population": "1 620 162", "gorod": "Новосибирск", "oblast": "Новосибирская область" }, "geometry": { "type": "Point", "coordinates": [ 82.9287, 55.0129 ] } },
+{ "type": "Feature", "properties": { "id": 4, "population": "1 495 066", "gorod": "Екатеринбург", "oblast": "Свердловская область" }, "geometry": { "type": "Point", "coordinates": [ 60.6008, 56.8408 ] } },
+{ "type": "Feature", "properties": { "id": 5, "population": "1 257 341", "gorod": "Казань", "oblast": "Республика Татарстан" }, "geometry": { "type": "Point", "coordinates": [49.1138, 55.7965 ] } },
+{ "type": "Feature", "properties": { "id": 6, "population": "1 244 254", "gorod": "Нижний Новгород", "oblast": "Нижегородская область" }, "geometry": { "type": "Point", "coordinates": [  43.9532, 56.3221] } },
+{ "type": "Feature", "properties": { "id": 7, "population": "1 187 960","gorod": "Челябинск", "oblast": "Челябинская область" }, "geometry": { "type": "Point", "coordinates": [ 61.3961, 55.1752 ] } },
+{ "type": "Feature", "properties": { "id": 8, "population": "1 144 759","gorod": "Самара", "oblast": "Самарская область" }, "geometry": { "type": "Point", "coordinates": [ 50.2172, 53.2244 ] } },
+{ "type": "Feature", "properties": { "id": 9, "population": "1 139 897","gorod": "Омск", "oblast": "Омская область" }, "geometry": { "type": "Point", "coordinates": [ 73.3684, 54.9784 ] } },
+{ "type": "Feature", "properties": { "id": 10, "population": "1 137 704","gorod": "Ростов-на-Дону", "oblast": "Ростовская область" }, "geometry": { "type": "Point", "coordinates": [ 39.7048, 47.2306 ] } },
+{ "type": "Feature", "properties": { "id": 11, "population": "1 125 933","gorod": "Уфа", "oblast": "Республика Башкортостан" }, "geometry": { "type": "Point", "coordinates": [ 55.9776, 54.7376 ] } },
+{ "type": "Feature", "properties": { "id": 12, "population": "1 092 851","gorod": "Красноярск", "oblast": "Красноярский край" }, "geometry": { "type": "Point", "coordinates": [ 92.8430, 56.0224 ] } },
+{ "type": "Feature", "properties": { "id": 13, "population": "1 050 602","gorod": "Воронеж", "oblast": "Воронежская область" }, "geometry": { "type": "Point", "coordinates": [ 39.1920, 51.6851 ] } },
+{ "type": "Feature", "properties": { "id": 14, "population": "1 049 199","gorod": "Пермь", "oblast": "Пермский край" }, "geometry": { "type": "Point", "coordinates": [ 56.2555, 58.0157 ] } },
+{ "type": "Feature", "properties": { "id": 15, "population": "1 004 763","gorod": "Волгоград", "oblast": "Волгоградская область" }, "geometry": { "type": "Point", "coordinates": [ 44.5100, 48.7312 ] } },
+]
+}

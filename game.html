@@ -1,0 +1,122 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Города-миллионики России</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+<link rel="stylesheet" href="style_game.css">
+<script src="jquery/external/jquery/jquery.js"></script>
+<script src="jquery/jquery-ui.js"></script>
+<link href="jquery/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+<header class="header">
+<div class="container">
+<div class="logo">Города-миллионики России</div>
+<div class="photo"><img src="moscow.png" alt="Moscow"></div>
+</div>
+</header> 
+<div class="map" id="map"></div>
+<script>  
+var map = L.map('map', {
+center: [57.45771128108693, 55.3602397691728], zoom: 4});
+var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}').addTo(map);
+var osmtopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png');
+var voyager_nolabels = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png');            
+</script>
+<script src="russian_cities.geojson"></script>
+<div class="menu">
+<legend class="legend">Режим</legend>
+<label for="radio-1">Обзор</label>
+<input type="radio" name="radio-1" id="radio-1" checked>
+<label for="radio-2">Города</label>
+<input type="radio" name="radio-1" id="radio-2" onFocus="gameon()">
+<div id="game">
+<h3 id="points" class="points"></h3>
+<h3 id="sum" class="sum"></h3>
+</div>
+</div>
+<script>
+var searc_city = 0;	
+var score = 0;  
+var city_t = {
+radius: 7,
+fillColor: "#e34234",
+color: "#000",
+weight: 1.5,
+opacity: 0.8,
+fillOpacity: 0.8};
+var city_g = {
+radius: 7,
+fillColor: "#3725a4",
+color: "#000",
+weight: 1.5,
+opacity: 0.8,
+fillOpacity: 0.8};
+var city_geojson = L.geoJSON(point,{     
+pointToLayer: function (feature, latlng) {
+return L.circleMarker(latlng, city_t);},
+onEachFeature: playgroundMarker}).addTo(map)
+var city_geojson_play = L.geoJSON(point,{     
+pointToLayer: function (feature, latlng) {
+return L.circleMarker(latlng, city_g);}})
+function playgroundMarker(feature, layer) {
+var popup = new L.Popup({offset: new L.point(0, -5)});
+    popup.setContent('<b>' + '<center>' + feature.properties.oblast + '</b>' + '<center>' + feature.properties.gorod + '<center>' + 'Количество жителей: '
+    + feature.properties.population + '<center>');
+    layer.bindPopup(popup);
+    layer.on({
+        mouseover: function () {
+        layer.openPopup();},
+        mouseout: function () {
+        layer.closePopup();},
+        mousemove: function (e) {
+        popup.setLatLng(e.latlng); }});}
+$("input").checkboxradio({icon: false})
+var baseMaps1 = {
+            "ESRI": esri,
+            "Топографическая карта OSM": osmtopo,};
+var overlayMaps1 = {
+            "Points": city_geojson,};
+var baseMaps2 = {
+            "Voyager": voyager_nolabels,};
+var controlLayers1 = L.control.layers(baseMaps1, overlayMaps1).addTo(map);
+var controlLayers2 = L.control.layers(baseMaps2, null);  
+function gameon() {
+var array = [];
+var coords = L.geoJSON(point, {
+onEachFeature: function (feature, layer) {
+array.push([feature.properties.gorod, feature.geometry.coordinates[1], feature.geometry.coordinates[0]])}});
+var m;
+{m = Math.round(Math.random() * (array.length - 1))}
+document.getElementById('points').innerHTML = array[m][0];
+searc_city = L.latLng(array[m][1], array[m][2])}
+function onMapClick(e) {
+if (map.distance(e.latlng, searc_city) < 150000) {
+score++}
+gameon();
+document.getElementById('sum').innerHTML = 'Счет: ' + score}
+map.on('click', onMapClick);
+let elem1 = document.getElementById('radio-1');
+elem1.onclick = function() {
+esri.addTo(map);
+osmtopo;
+city_geojson.addTo(map);
+voyager_nolabels.remove(map);
+city_geojson_play.remove(map);
+controlLayers2.remove(map);
+controlLayers1.addTo(map);
+$('#game').hide()}
+let elem2 = document.getElementById('radio-2');
+elem2.onclick = function() {
+voyager_nolabels.addTo(map);
+city_geojson_play.addTo(map)
+esri.remove(map);
+osmtopo.remove(map)
+city_geojson.remove(map);
+controlLayers1.remove(map);
+controlLayers2.addTo(map);        
+$('#game').show("slow")}
+</script>
+</body>
+</html>
